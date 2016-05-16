@@ -1,3 +1,4 @@
+
 #include "matrix.h"
 
 //行列aを表示
