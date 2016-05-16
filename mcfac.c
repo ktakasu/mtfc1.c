@@ -8,8 +8,6 @@
  
 #define STEP 100000
 #define ALPHA 0.001
-#define BETA 0.01
-#define THT 0.1
 #define MAX 3
 #define MIN -1
 #define CUT 15
@@ -146,8 +144,8 @@ int main(void){
   r=mat_read(filename);
   M=r->row;N=r->col;
 
-  p=mat_test(mat_alloc(M,K),-1,3,10);
-  q=mat_test(mat_alloc(K,N),-1,3,10);
+  p=mat_test(mat_alloc(M,K),MIN,MAX,10);
+  q=mat_test(mat_alloc(K,N),MIN,MAX,10);
   mat_print(p);mat_print(q);
   root=tree2(p,q);
   mat_print(root->mp);
@@ -161,10 +159,9 @@ int main(void){
     
     p2=mat_copy(p);
     q2=mat_copy(q);
-    
 
-    *(p2->element+i)=(double)(rand()%40-10)/10;
-    *(q2->element+j)=(double)(rand()%40-10)/10;
+    *(p2->element+i)=(double)(rand()%10*(MAX-MIN)+10*MIN)/10;
+    *(q2->element+j)=(double)(rand()%10*(MAX-MIN)+10*MIN)/10;
     
     Run=(double)(rand()%1000)/1000;
 
